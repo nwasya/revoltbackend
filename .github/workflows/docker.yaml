@@ -1,5 +1,4 @@
 name: Docker Test & Publish
-
 on:
   push:
     branches:
