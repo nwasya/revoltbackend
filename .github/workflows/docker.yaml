@@ -61,7 +61,7 @@ jobs:
     if: github.event_name != 'pull_request'
     strategy:
       matrix:
-        project: [pushd]
+        project:  [delta, bonfire, pushd]
         # project: [delta, bonfire, autumn, january, pushd]
     name: Build ${{ matrix.project }} image
     steps:
@@ -100,15 +100,15 @@ jobs:
 
 
 
-            #     {
-            #   "delta": {
-            #     "path": "crates/delta",
-            #     "tag": "${{ github.repository_owner }}/server"
-            #   },
-            #   "bonfire": {
-            #     "path": "crates/bonfire",
-            #     "tag": "${{ github.repository_owner }}/bonfire"
-            #   },
+                {
+              "delta": {
+                "path": "crates/delta",
+                "tag": "${{ github.repository_owner }}/server"
+              },
+              "bonfire": {
+                "path": "crates/bonfire",
+                "tag": "${{ github.repository_owner }}/bonfire"
+              },
             #   "autumn": {
             #     "path": "crates/services/autumn",
             #     "tag": "${{ github.repository_owner }}/autumn"
@@ -144,5 +144,5 @@ jobs:
           file: ${{ steps.export.outputs.path }}/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
-            BASE_IMAGE=ghcr.io/${{ github.repository_owner }}/base:latest
+            BASE_IMAGE=ghcr.io/nwasya/revoltbackend/base:latest
           labels: ${{ steps.meta.outputs.labels }}
